@@ -1,0 +1,13 @@
+
+[workspace]
+members = ["advent","read_file","task_1","task_2","task_3","task_4","undefined"]
+default-members=["advent"]
+
+# [package]
+# name = "adventOfRust2021"
+# version = "0.1.0"
+# edition = "2021"
+
+# [[bin]]
+# name = "advent"
+# path = "./advent/src/main.rs"{
