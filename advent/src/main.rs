@@ -1,5 +1,5 @@
 use read_file::read_file;
-use task_3::task_3;
+use task_3;
 // use task_4::task_4;
 
 fn main() {
