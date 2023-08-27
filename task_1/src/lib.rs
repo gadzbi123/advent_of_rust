@@ -31,3 +31,8 @@ fn task_1_2() {
     }
     println!("{}", count);
 }
+
+pub fn task_1() {
+    task_1_1();
+    task_1_2();
+}

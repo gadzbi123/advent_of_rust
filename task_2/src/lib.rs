@@ -33,3 +33,8 @@ fn task_2_2() {
     }
     println!("{:?}", point.0 * point.1.abs())
 }
+
+pub fn task_2() {
+    task_2_1();
+    task_2_2();
+}
