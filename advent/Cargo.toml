@@ -11,4 +11,5 @@ read_file = {path = "../read_file"}
 # task_2 = {path = "../task_2"}
 # task_3 = {path = "../task_3"}
 # task_4 = {path = "../task_4"}
+# task_5 = {path = "../task_5"}
 undefined = {path = "../undefined"}
