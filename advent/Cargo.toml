@@ -6,10 +6,14 @@ edition.workspace = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+ndarray = "0.15.6"
 read_file = {path = "../read_file"}
 # task_1 = {path = "../task_1"}
 # task_2 = {path = "../task_2"}
 # task_3 = {path = "../task_3"}
 # task_4 = {path = "../task_4"}
 # task_5 = {path = "../task_5"}
+# task_6 = {path = "../task_6"}
+# task_7 = {path = "../task_7"}
+task_8 = {path = "../task_8"}
 undefined = {path = "../undefined"}
