@@ -8,7 +8,7 @@ version = "0.1.0"
 dependencies = [
  "ndarray",
  "read_file",
- "task_8",
+ "task_10",
  "undefined",
 ]
 
@@ -87,6 +87,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "task_10"
+version = "0.1.0"
+dependencies = [
+ "read_file",
+]
+
+[[package]]
 name = "task_2"
 version = "0.1.0"
 dependencies = [
@@ -102,13 +109,6 @@ dependencies = [
 
 [[package]]
 name = "task_4"
-version = "0.1.0"
-dependencies = [
- "read_file",
-]
-
-[[package]]
-name = "task_8"
 version = "0.1.0"
 dependencies = [
  "read_file",

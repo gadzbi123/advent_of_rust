@@ -12,4 +12,4 @@ edition = "2021"
 
 # [[bin]]
 # name = "advent"
-# path = "./advent/src/main.rs"{
+# path = "./advent/src/main.rs"

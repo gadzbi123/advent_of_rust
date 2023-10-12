@@ -7,19 +7,23 @@ use std::{
     thread,
     time::Duration,
 };
+
 pub trait Iterator {
     type Item;
     fn next(&mut self) -> Option<Self::Item>;
 }
+
 struct Counter {
     value: u32,
 }
+
 impl Iterator for Counter {
     type Item = u32;
     fn next(&mut self) -> Option<Self::Item> {
         Some(self.value)
     }
 }
+
 unsafe fn unsafe_rust() {
     let mem: Vec<u32> = vec![1, 3];
     let mut first_half_addr = mem.as_ptr() as *mut u16;
@@ -70,11 +74,13 @@ pub fn mutate_array_ref_cell() {
     vec[0].swap(&vec[1]);
     dbg!(&vec);
 }
+
 #[derive(Debug, Clone, Copy)]
 struct my_struct<'a> {
     number: i32,
     name: &'a str,
 }
+
 pub fn mutate_array_ref_cell_struct_str() {
     let vec = [
         RefCell::new(my_struct {
@@ -179,6 +185,7 @@ pub struct Todo {
     text: String,
     completed: bool,
 }
+
 impl Todo {
     pub fn new(text: String, id: usize) -> Rc<RefCell<Todo>> {
         Rc::from(RefCell::new(Todo {
@@ -229,6 +236,7 @@ impl Todos {
         true
     }
 }
+
 pub fn rc_refcell_shared_mut() {
     let mut todos = Todos::new(vec![Todo::new("abc".to_string(), 1)]);
     // we have own pointer to RefCell, need to borrow when we use it
@@ -247,4 +255,73 @@ pub fn rc_refcell_shared_mut() {
     // (**last_todo).borrow_mut().text = "xdd".to_string();
     dbg!(my_todo);
     dbg!(last_todo);
+}
+
+pub fn my_atoi(num_str: String) -> i32 {
+    let mut integer = 0i32;
+    if num_str.is_empty() {
+        return integer;
+    }
+    let num_start = num_str.find(|x: char| x.is_ascii_digit());
+    if num_start.is_none() {
+        return integer;
+    }
+    let ascii_no_allowed = num_str.find(|x: char| x.is_ascii() && x != ' ' && x != '-' && x != '+');
+    if let Some(ans) = ascii_no_allowed {
+        if num_start.unwrap() > ans {
+            return integer;
+        }
+    }
+    let sign = num_str.find(|x: char| x == '-' || x == '+');
+    if let Some(sign_index) = sign {
+        if num_start.unwrap() != sign_index + 1 && sign_index < num_start.unwrap() {
+            return integer;
+        }
+    }
+    let is_negative = sign.is_some()
+        && num_str.as_bytes()[sign.unwrap()] as char == '-'
+        && num_start.unwrap() == sign.unwrap() + 1;
+    for &c in num_str
+        .as_bytes()
+        .iter()
+        .take(num_str.len())
+        .skip(num_start.unwrap())
+    {
+        match (c as char).to_digit(10) {
+            Some(digit) => {
+                integer = integer.saturating_mul(10);
+                if integer < 0 {
+                    integer = integer.saturating_sub(digit as i32);
+                    continue;
+                }
+                integer = integer.saturating_add(digit as i32);
+                if integer != 0 && is_negative {
+                    integer *= -1;
+                }
+            }
+            None => {
+                return integer;
+            }
+        }
+    }
+    integer
+}
+
+#[test]
+fn my_atoi_success() {
+    assert_eq!(my_atoi("-13+8".to_string()), -13);
+    assert_eq!(my_atoi("".to_string()), 0);
+    assert_eq!(my_atoi("+".to_string()), 0);
+    assert_eq!(my_atoi("123".to_string()), 123);
+    assert_eq!(my_atoi("-123".to_string()), -123);
+    assert_eq!(my_atoi("123-".to_string()), 123);
+    assert_eq!(my_atoi("     123 i like shit".to_string()), 123);
+    assert_eq!(my_atoi("    -123".to_string()), -123);
+    assert_eq!(my_atoi("    -123 i like shit".to_string()), -123);
+    assert_eq!(my_atoi("    +123 i like shit".to_string()), 123);
+    assert_eq!(my_atoi("+123 i like shit".to_string()), 123);
+    assert_eq!(my_atoi("-123 0".to_string()), -123);
+    assert_eq!(my_atoi("+-123".to_string()), 0);
+    assert_eq!(my_atoi("-+123".to_string()), 0);
+    assert_eq!(my_atoi("words and 987".to_string()), 0);
 }
