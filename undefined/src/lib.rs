@@ -7,6 +7,7 @@ use std::{
     rc::Rc,
     sync::mpsc::{self, Receiver, Sender},
     thread,
+    time::Duration,
     time::{Duration, Instant},
     usize,
 };
@@ -329,7 +330,6 @@ fn my_atoi_success() {
     assert_eq!(my_atoi("words and 987".to_string()), 0);
 }
 
-use rand::prelude::*;
 pub fn binary_vs_normal_search() {
     let mut step = 10;
     let search_times = 100;

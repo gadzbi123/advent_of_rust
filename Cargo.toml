@@ -1,6 +1,6 @@
 
 [workspace]
-members = ["advent","read_file"]
+members = ["advent","read_file","undefined"]
 default-members=["advent"]
 resolver = "2"
 [workspace.package]

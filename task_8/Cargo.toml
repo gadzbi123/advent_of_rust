@@ -1,8 +1,9 @@
 [package]
-name = "undefined"
-version = "0.1.0"
-edition = "2021"
+name = "task_8"
+version.workspace = true
+edition.workspace = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+read_file = {path = "../read_file"}
