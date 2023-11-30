@@ -1,0 +1,15 @@
+
+[workspace]
+members = ["advent","read_file"]
+default-members=["advent"]
+resolver = "2"
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+# name = "advent_of_rust_2021"
+# licence = "./LICENSE"
+
+
+# [[bin]]
+# name = "advent"
+# path = "./advent/src/main.rs"
